@@ -4,21 +4,24 @@
 class Game {
 public:
 	Game();
-	//ゲームを初期化する
-	bool Initalize();
-	//ゲームオーバーまでゲームループを実行する
+	/*メンバー変数*/
+	//Gameクラスを初期化する
+	//bool = ゲームループを続行する否かを示す。
+	bool Initialize();
+	//ゲームループ実行
 	void RunLoop();
-	//ゲームをシャットダウンする
+	//ゲーム終了
 	void Shutdown();
-
 private:
-	//ゲームループの為のヘルパー関数群
+	//ゲームループの3つのステップ
+	//入力処理
 	void ProcessInput();
+	//ゲーム更新
 	void UpdateGame();
+	//出力生成
 	void GenerateOutput();
-
-	// SDLが作るウィンドウ
+	//SDLが作るウィンドウ
 	SDL_Window* mWindow;
-	// ゲームの続行を指示する
-	bool mIsRuuning;
+	//ゲームの続行を続行する
+	bool mIsRunning;
 };
