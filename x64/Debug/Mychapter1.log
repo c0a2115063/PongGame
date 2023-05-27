@@ -1,0 +1,6 @@
+﻿  Game.cpp
+C:\Users\admin\Documents\GameProCpp\code-master\Mychapter1\Game.cpp(1,10): warning C4067: プリプロセッサ ディレクティブの後に余分な文字がありました - 改行が必要です
+C:\Users\admin\Documents\GameProCpp\code-master\Mychapter1\Game.cpp(31): warning C4715: 'Game::Initialize': 値を返さないコントロール パスがあります。
+  Mychapter1.vcxproj -> C:\Users\admin\Documents\GameProCpp\code-master\Mychapter1\x64\Debug\Mychapter1.exe
+  C:\Users\admin\Documents\SDL2\lib\x64\SDL2.dll
+  1 個のファイルをコピーしました
