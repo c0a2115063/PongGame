@@ -36,6 +36,7 @@ void Game::RunLoop() {
 		ProcessInput();
 		UpdateGame();
 		GenerateOutput();
+
 	}//mIsRunningがfalseになったら繰り返しを止める
 }
 
@@ -47,7 +48,24 @@ void Game::Shutdown() { //Initializeの逆を行う
 
 
 void Game::ProcessInput() {
+	SDL_Event event;
+	//キューにイベントがあれば繰り返す
+	while (SDL_PollEvent(&event)) {
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			mIsRunning = false;
+			break;
+		}
+	}
+	//SDL_GetKeyboardStateでキーボード全体の状態を把握するという方法がある。
+	//キーボードの現在の状態が格納された配列へのポイントを返す。
+	const Uint8* state = SDL_GetKeyboardState(NULL);
 
+	//キーに対応するSDL_SCANCODE列挙型の値を使う
+	if (state[SDL_SCANCODE_ESCAPE]) {
+		mIsRunning = false;
+	}
 }
 
 void Game::UpdateGame() {
