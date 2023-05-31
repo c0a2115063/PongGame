@@ -2,6 +2,9 @@
 
 Game::Game() 
 	:mWindow(nullptr)
+	,mRenderer(nullptr)
+	,mIsRunning(true)
+
 {
 }
 
@@ -28,6 +31,17 @@ bool Game::Initialize() {
 		SDL_Log("ウィンドウの作成に失敗しました：%s", SDL_GetError());
 		return false;
 	}
+	//SDLのグラフィック用コードを用いる。
+	//レンダラー：2D/3D問わずグラフィックスを描画するシステム
+	mRenderer = SDL_CreateRenderer(
+		mWindow, //作成するレンダラーの描画対象となるウィンドウへのポインタ
+		-1,      //通常は-1
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
+	);
+
+	if (!mRenderer) {
+		SDL_Log("レンダラーの作成に失敗しました￥：%s", SDL_GetError());
+	}
 }
 
 void Game::RunLoop() {
@@ -43,6 +57,7 @@ void Game::RunLoop() {
 
 void Game::Shutdown() { //Initializeの逆を行う
 	SDL_DestroyWindow(mWindow); //SDL_Windowを破棄
+	SDL_DestroyRenderer(mRenderer);//SDL_Rendererを破棄
 	SDL_Quit();					//SDLを終わらせる
 }
 
@@ -73,5 +88,13 @@ void Game::UpdateGame() {
 }
 
 void Game::GenerateOutput() {
-
+	SDL_SetRenderDrawColor(
+		mRenderer,
+		0,   // R
+		0,   // G
+		255, // B
+		255  // A
+	);
+	SDL_RenderClear(mRenderer); //バックバッファを現在の描画色でクリアする
+	SDL_RenderPresent(mRenderer);//フロントバッファとバックバッファを交換する
 }
