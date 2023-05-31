@@ -22,6 +22,8 @@ private:
 	void GenerateOutput();
 	//SDLが作るウィンドウ
 	SDL_Window* mWindow;
+	//SDLが作るレンダラー
+	SDL_Renderer* mRenderer;
 	//ゲームの続行を続行する
 	bool mIsRunning;
 };
