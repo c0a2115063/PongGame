@@ -1,6 +1,12 @@
 #pragma once
 #include "SDL.h"
 
+struct Vector2
+{
+	float x;
+	float y;
+};
+
 class Game {
 public:
 	Game();
@@ -26,4 +32,10 @@ private:
 	SDL_Renderer* mRenderer;
 	//ゲームの続行を続行する
 	bool mIsRunning;
+
+
+	//パドルの位置
+	Vector2 mPaddlePos;
+	//ボールの位置
+	Vector2 mBallPos;
 };
